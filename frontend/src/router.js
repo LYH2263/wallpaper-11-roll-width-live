@@ -3,6 +3,7 @@ import Overview from './pages/Overview.vue'
 import Walls from './pages/Walls.vue'
 import WallDetail from './pages/WallDetail.vue'
 import Rolls from './pages/Rolls.vue'
+import RollDetail from './pages/RollDetail.vue'
 import Drops from './pages/Drops.vue'
 import Bench from './pages/Bench.vue'
 import Pattern from './pages/Pattern.vue'
@@ -16,6 +17,7 @@ export default createRouter({
     { path: '/walls', component: Walls },
     { path: '/walls/:id', component: WallDetail, props: true },
     { path: '/rolls', component: Rolls },
+    { path: '/rolls/:id', component: RollDetail, props: true },
     { path: '/drops', component: Drops },
     { path: '/bench', component: Bench },
     { path: '/pattern', component: Pattern },

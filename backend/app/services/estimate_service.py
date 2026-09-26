@@ -1,14 +1,15 @@
 from fastapi import HTTPException
 
 from app.engines.wallpaper_math import roll_count
-from app.repositories import history, rolls, walls
+from app.repositories import history, walls
+from app.services import roll_service
 
 
 def run_estimate(wall_id: int, roll_id: int, save: bool, note: str):
     wall = walls.get_wall(wall_id)
     if not wall:
         raise HTTPException(404, "wall not found")
-    roll = rolls.get_roll(roll_id)
+    roll = roll_service.get_roll(roll_id)
     if not roll:
         raise HTTPException(404, "roll not found")
     if wall.get("data_quality") == "dirty" or roll.get("data_quality") == "dirty":

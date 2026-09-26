@@ -1,3 +1,4 @@
+from app.config import MAX_ROLL_WIDTH_CM
 from app.db import connect
 
 
@@ -38,5 +39,9 @@ def init_db():
             ],
         )
         conn.execute("INSERT INTO settings(key,value) VALUES ('unit','roll')")
+        conn.execute(
+            "INSERT INTO settings(key,value) VALUES ('max_width_cm',?)",
+            (str(MAX_ROLL_WIDTH_CM),),
+        )
         conn.commit()
     conn.close()
