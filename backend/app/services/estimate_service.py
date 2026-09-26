@@ -2,6 +2,7 @@ from fastapi import HTTPException
 
 from app.engines.wallpaper_math import roll_count
 from app.repositories import history, rolls, walls
+from app.services import roll_service
 
 
 def run_estimate(wall_id: int, roll_id: int, save: bool, note: str):
@@ -20,4 +21,4 @@ def run_estimate(wall_id: int, roll_id: int, save: bool, note: str):
     run_id = None
     if save:
         run_id = history.insert_run(wall_id, roll_id, {**calc, "wall_id": wall_id, "roll_id": roll_id}, note)
-    return {"wall": wall, "roll": roll, "run_id": run_id, **calc}
+    return {"wall": wall, "roll": roll_service.public_roll(roll), "run_id": run_id, **calc}

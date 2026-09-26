@@ -16,3 +16,12 @@ def get_roll(rid: int):
         return dict(row) if row else None
     finally:
         conn.close()
+
+
+def update_width(rid: int, width_m: float):
+    conn = connect()
+    try:
+        conn.execute("UPDATE rolls SET width=? WHERE id=?", (width_m, rid))
+        conn.commit()
+    finally:
+        conn.close()
